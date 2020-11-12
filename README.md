@@ -13,9 +13,9 @@ Telegram 广告正则屏蔽计划
 
 ### 规则模板：
 
-`re:(?i:().*()|().*())===delete`
+`/add@keyword_reply_bot re:(?i:().*()|().*())===delete`
 
-或 `(?i:().*()|().*())===delete`
+或 `/add (?i:().*()|().*())===delete`
 
 (Golang限制，否则可以用`(?=())(?=()).*`)
 
@@ -31,9 +31,9 @@ Telegram 广告正则屏蔽计划
 
 ### 规则模板
 
-`re:(?i:())===delete`
+`/add@keyword_reply_bot re:(?i:())===delete`
 
-或 `(?i:())===delete`
+或 `/add (?i:())===delete`
 
 ### 关键词
 
@@ -43,9 +43,9 @@ Telegram 广告正则屏蔽计划
 
 ### 规则模板
 
-`re:(?i:\.()$)===delete`
+`/add@keyword_reply_bot re:(?i:\.()$)===delete`
 
-或 `(?i:\.()$)===delete`
+或 `/add (?i:\.()$)===delete`
 
 ### 关键词
 

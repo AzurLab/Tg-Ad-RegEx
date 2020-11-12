@@ -6,7 +6,7 @@ Telegram Advertisements Regular Expression
 
 Telegram广告关键词正则表达式
 
-可用于关键词机器人，基于
+可用于[关键词机器人](https://t.me/keyword_reply_bot) ([项目地址](https://github.com/zu1k/tg-keyword-reply-bot)) 或其衍生产物，正则参考[Golang正则支持库](https://github.com/google/re2/wiki/Syntax)
 
 双关键词匹配规则
 

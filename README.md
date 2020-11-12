@@ -1,11 +1,11 @@
 
 # Tg-Ad-RegEx
-Telegram Advertisements Regular Expression
+Telegram Advertisements Regular Expression 
 
-Telegram广告正则表达式
+Telegram 广告正则屏蔽计划
 
-[![Telegram](https://img.shields.io/badge/discuss-Telegram-2EA9DF?style=flat-square)](https://t.me/adregex)
-[![Telegram](https://img.shields.io/badge/channel-Telegram-2EA9DF?style=flat-square)](https://t.me/adregexchat)
+[![Telegram](https://img.shields.io/badge/discuss-Telegram-2EA9DF?style=flat-square)](https://t.me/adregexchat)
+[![Telegram](https://img.shields.io/badge/channel-Telegram-2EA9DF?style=flat-square)](https://t.me/adregex)
 
 可用于[关键词机器人](https://t.me/keyword_reply_bot) ([项目地址](https://github.com/zu1k/tg-keyword-reply-bot)) 或其衍生产物，正则参考[Golang正则支持库](https://github.com/google/re2/wiki/Syntax)
 

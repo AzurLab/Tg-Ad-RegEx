@@ -2,7 +2,7 @@
 # Tg-Ad-RegEx
 Telegram Advertisements Regular Expression 
 
-Telegram 广告正则屏蔽计划
+Telegram 去广告正则
 
 [![Telegram](https://img.shields.io/badge/discuss-Telegram-2EA9DF?style=flat-square)](https://t.me/adregexchat)
 [![Telegram](https://img.shields.io/badge/channel-Telegram-2EA9DF?style=flat-square)](https://t.me/adregex)

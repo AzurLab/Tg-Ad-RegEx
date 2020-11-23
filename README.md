@@ -4,7 +4,7 @@ Telegram Advertisements Regular Expression
 
 Telegram 去广告正则
 
-[![Telegram](https://img.shields.io/badge/discuss-Telegram-2EA9DF?style=flat-square)](https://t.me/adregexchat)
+[![Telegram](https://img.shields.io/badge/discuss-Telegram-2EA9DF?style=flat-square)](https://t.me/joinchat/AAAAAFX2RjhGBMoU8lY7NA)
 [![Telegram](https://img.shields.io/badge/channel-Telegram-2EA9DF?style=flat-square)](https://t.me/adregex)
 
 可用于[关键词机器人](https://t.me/keyword_reply_bot) ([项目地址](https://github.com/zu1k/tg-keyword-reply-bot)) 或其衍生产物/类似作品，用来扼制Telegram泛滥成灾的广告，正则参考[Golang正则支持库](https://github.com/google/re2/wiki/Syntax)

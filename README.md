@@ -9,6 +9,14 @@ Telegram 去广告正则
 
 可用于[关键词机器人](https://t.me/keyword_reply_bot) ([项目地址](https://github.com/zu1k/tg-keyword-reply-bot)) 或其衍生产物/类似作品，用来扼制Telegram泛滥成灾的广告，正则参考[Golang正则支持库](https://github.com/google/re2/wiki/Syntax)
 
+## 规则生成脚本
+
+> https://github.com/AzurLab/Tg-Ad-RegEx/blob/main/adregex
+
+一键命令：
+
+`wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex`
+
 ## 双关键词匹配规则
 
 ### 规则模板：

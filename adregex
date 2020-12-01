@@ -20,19 +20,19 @@ re_print(){
 case "$1" in
     1)
         #文件
-        echo "/add (?i:\.(${file_suffix})\$)===delete"
+        echo "(?i:\.(${file_suffix})\$)===delete"
         ;;
     2)
         #单
-        echo "/add (?i:(${s_keyword}))===delete"
+        echo "(?i:(${s_keyword}))===delete"
         ;;
     4)
         #双
-        echo "/add (?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
+        echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
         ;;
     *)
         #合并
-        echo "/add (?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
+        echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
         ;;
 esac
 

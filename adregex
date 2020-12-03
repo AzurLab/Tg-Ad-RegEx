@@ -18,7 +18,7 @@ file_suffix='exe|cmd|com|bat|scr|cpl|vbs'
 #输出规则
 re_print(){
     case "$1" in
-        1)
+       1)
             #文件
             echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
             echo "(?i:\.(${file_suffix})\$)===delete"

@@ -1,6 +1,7 @@
 #!/system/bin/sh
 ##############################
-# Telegram 去广告正则生成脚本
+# Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
+# 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
 ##############################
 # 可自定义关键词
 # ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}

@@ -1,76 +1,110 @@
 #!/system/bin/sh
-#
-# ${b_keyword1} ${b_keyword2} ${s_keyword} ${file_suffix}
-#
-#双关键词规则 两个关键词同时出现生效
-#双关键词1 以商品名为主
-b_keyword1='广告|服务器|cdn|阿里云|腾讯云|高防|vps|独服|杜甫|平台|搭建|定制|引流|吸粉|增粉|加粉|关注|点赞|评论|水军|活跃|wz粉|非小号|买号|卖号|微信号|企业微信|QQ号|公众号|陌陌号|电商|电销|股民|资源|数据|小群|博彩|亚博|棋牌|bc|菠菜|狗推|人事|兼职|招聘|招募|招代理|暗网|黑产|灰产|支付|件套|黑卡|银行卡|对公|账户|公户|个户|私户|代收|代付|代发|洗钱|漂白|资金|转账|usdt|套现|换汇|贷款|网贷|送货|跑分|卡商|卡王|查人|查询|定位|开房|查档|社工|苹果签名|iOS签名|企业签名|莆田|手表|高仿|水鬼|租房|房源|一对一|1对1'
+##############################
+# Telegram 去广告正则生成脚本
+##############################
+# 可自定义关键词
+# ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}
+##############################
+# 双关键词规则 两个关键词同时出现生效
 
-#双关键词2 以对商品的修饰为主
-b_keyword2='出|售|卖|收|需要|咨询|合作|点我|加我|看我|点头像|dd|滴滴|联系|私|v信|加v|\+v|vx|加q|\+q|真人|真实|实名|认证|筛选|解封|担保|专业|精准|实力|高端|专供|供应|大量|批发|现货|现🔥|货源|直出|安排|菲|全新|原装|一手|二手|团队|工作室'
+# 双关键词1 以商品名为主
 
-#单关键词规则 每条都是单独生效
-s_keyword='^(dd|滴滴|签到)$|小哥哥.*在(不在|吗)|需要.*联系|v信|薇信|^加v'
+b_keyword1='广告|服务器|cdn|阿里云|腾讯云|高防|vps|独服|杜甫|平台|搭建|定制|引流|[吸增加]粉|关注|点赞|评论|水军|活跃|wz粉|(非小|[买卖]|微信|QQ|钉钉|公众|陌陌|探探)号|企业微信|电[商销]|股民|小群|博彩|菠菜|亚博|棋牌|bc|狗推|人事|兼职|招([人聘募]|代理)|暗网|资源|数据|[黑灰]产|支付|件套|(黑|银行|信用)卡|对公|[账公个私]户|代[收付发]|洗[钱米]|漂白|资金|转账|usdt|套现|换汇|贷款|网贷|送货|跑分|卡[商王]|查[询人车房户档]|定位|人鬼|开房|社工|(苹果|iOS|企业)签名|莆田|手表|高仿|水鬼|租房|房源|[一1][比对][一1]'
 
-#文件后缀规则 删除可执行文件
+# 双关键词2 以对商品的修饰为主
+
+b_keyword2='出|售|卖|收|需要|咨询|合作|[点加看]我|点头像|dd|滴滴|联系|私|[v薇]信|[加\+][vq薇]|真[人实]|实名|认证|筛选|解封|担保|专[业供]|精准|实力|高端|供应|大量|批发|[现有][货🔥]|货源|直出|安排|全新|原装|[一二三]手|个人|团队|工作室'
+
+# 双关键词2plus 单独出现时，误杀可能性较大，为了良好的引用性，单独列出
+
+b_keyword2p='菲|仙女'
+
+# 单关键词规则 每条相互独立生效
+
+s_keyword='^(dd|滴滴|签到)$|小哥哥.*在(不在|吗)|需要.*联系|[v薇]信|^加v'
+
+# 文件后缀规则 删除可执行文件
+
 file_suffix='exe|cmd|com|bat|scr|cpl|vbs'
 
-#输出规则
+# 昵称规则 针对昵称 由于其特殊性，暂不能包含在合并规则中
+# 自动包含双关键词1和2，但不包含2p
+#
+nickname='^(在?菲)|^(1|小?仙女)$|头像|资料'
+
+##############################
+# 以下是脚本
+##############################
+
+# 输出规则
 re_print(){
-    case "$1" in
-       1)
-            #文件
-            echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
-            echo "(?i:\.(${file_suffix})\$)===delete"
-            ;;
-       2)
-            #单
-            echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
-            echo "(?i:(${s_keyword}))===delete"
-            ;;
-       4)
-            #双
-            echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
-            echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
-            ;;
-       8);&
-       *)
-            #合并
-            echo -e "\033[7;32madregex:All in One Rule 合并规则\033[0m"
-            echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
-            ;;
-    esac
+    #检查是否已被输出
+    if [ "${re_printed[$1]}" != "1" ] ;then
+        re_printed[$1]=1
+        case "$1" in
+           1)
+                #文件
+                echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
+                echo "(?i:\.(${file_suffix})\$)===delete"
+                ;;
+           2)
+                #单
+                echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
+                echo "(?i:(${s_keyword}))===delete"
+                ;;
+           4)
+                #双
+                echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
+                echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1}))===delete"
+                ;;
+           8)
+                #昵称
+                echo -e "\033[7;32madregex: Nickname Rule 昵称规则\033[0m"
+                echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
+                ;;
+           0)
+                #合并
+                echo -e "\033[7;32madregex: All in One Rule 合并规则\033[0m"
+                echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
+                ;;
+           *)
+                #
+                ;;
+        esac
+    fi
 
 }
 
+# 输出帮助
 help_print(){
-    echo "adregx: help\n输入 1 获取文件后缀规则\n输入 2 获取单关键词规则\n输入 4 获取双关键词规则\n输入 8 或什么都不输入 获取合并规则\n同时获取多条规则，请将以上参数相加或者使用空格隔开"
+    echo "adregx: help\n输入 1 获取文件后缀规则\n输入 2 获取单关键词规则\n输入 4 获取双关键词规则\n输入 8 获取昵称规则\n输入 0 或什么都不输入 获取合并规则和昵称规则\n同时获取多条规则，请将以上参数相加或者使用空格隔开"
 }
 
+# 输出错误
 err_print(){
     echo -e "\033[7;32madregex: invalid parameter value '$1'\033[0m"
+    help_print
 }
 
 
-#判断，分离，切割参数
+# 读取，切割参数
 parameter_read(){
-    if [ $# -eq 0 ] ;then
-        re_print
-    fi
-    while [[ $# -ge 1 ]] ;do
+    #无参数，输出默认
+    if [ $# -eq 0 ] ;then re_print 0; re_print 8; fi
+    #初始化输出记录
+    re_printed=()
+    #依次读取参数，并判断是否全部输出过
+    while [ "${#re_printed[@]}" -lt 5 ] && [[ $# -ge 1 ]] ;do
         key="$1"
         case $key in
-            0) re_print;;
-            [1-9]);&
-            [1-9][0-9])
+            0) re_print 0; re_print 8;;
+            [1-9]) ;& [1-9][0-9])
                 factor=16 # 2^4
-                if [ "$key" -ge "$factor" ] ;then
-                    err_print $key
-                    help_print
+                if [ "$key" -ge "$factor" ]; then
                     error="true"
                     break
                 else
-                    while [ "$factor" -gt 1 ] ;do
+                    while [ "$factor" -gt 1 ]; do
                         factor=$((factor/2))
                         while [ "$key" -ge "$factor" ] ;do
                             let key-=$factor
@@ -84,8 +118,6 @@ parameter_read(){
                 break
                 ;;
             *)
-                err_print $key
-                help_print
                 error="true"
                 break
                 ;;
@@ -94,21 +126,24 @@ parameter_read(){
     done
 }
 
-
+# 读取传入的全部参数
 parameter_read $@
 
-#请求重新输入参数
-while [ "$error" == "true" ] ;do
+# 参数出错时，请求重新输入参数
+while [ "$error" == "true" ]; do
+    err_print $key
     error="false"
     echo -n "请重新输入参数，或输入exit退出："
-    if read -t 60 ;then
-        if [ "$REPLY" == "exit" ] ;then
+    if read -t 60; then
+        if [ "$REPLY" == "exit" ]; then
             exit 0
         else
             parameter_read $REPLY
         fi
     else
         echo "输入超时或被取消，输出默认规则"
-        re_print
+        parameter_read
     fi
 done
+
+echo -e "\033[7;32madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"

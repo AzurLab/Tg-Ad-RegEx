@@ -20,56 +20,60 @@ re_print(){
 case "$1" in
     1)
         #文件
+        echo -e "\033[7;32m文件后缀规则\033[0m"
         echo "(?i:\.(${file_suffix})\$)===delete"
         ;;
     2)
         #单
+        echo -e "\033[7;32m单关键词规则\033[0m"
         echo "(?i:(${s_keyword}))===delete"
         ;;
     4)
         #双
+        echo -e "\033[7;32m双关键词规则\033[0m"
         echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
         ;;
     *)
         #合并
+        echo -e "\033[7;32mAll in One 合并规则\033[0m"
         echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
         ;;
 esac
 
 }
 
-#判断参数
-case "$1" in
-    1)
-        re_print 1
+help_print(){
+    echo "adregx: help\n输入参数1 获取文件后缀规则\n输入参数2 获取文件后缀规则\n输入参数4 获取文件后缀规则\n获取多条规则 将以上参数相加\n或者不输入参数 获取合并规则"
+}
+
+
+#判断参数 
+pm1=$1
+case "$pm1" in
+    [1-9]);&
+    [1-9][0-9])
+        if [ "$pm1" -ge 8 ] ;then
+            echo -e "\033[7;32madregex: invalid parameter value '$1'\033[0m"
+            help_print
+        else
+            if [ "$pm1" -ge 4 ] ;then
+                let pm1-=4
+                re_print 4
+            fi
+            if [ "$pm1" -ge 2 ] ;then
+                let pm1-=2
+                re_print 2
+            fi
+            if [ "$pm1" -ge 1 ] ;then
+                let pm1--
+                re_print 1
+            fi
+        fi
         ;;
-    2)
-        re_print 2
-        ;;
-    3)
-        re_print 1
-        re_print 2
-        ;;    
-    4)
-        re_print 4
-        ;;
-    5)
-        re_print 1
-        re_print 4
-        ;;
-    6)
-        re_print 2
-        re_print 4
-        ;;
-    7)
-        re_print 1
-        re_print 2
-        re_print 4
+    *help*)
+        help_print
         ;;
     *)
         re_print
         ;;
 esac
-
-
-

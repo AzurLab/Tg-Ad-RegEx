@@ -89,10 +89,10 @@ err_print(){
 
 # 读取，切割参数
 parameter_read(){
-    #无参数，输出默认
-    if [ $# -eq 0 ] ;then re_print 0; re_print 8; fi
     #初始化输出记录
     re_printed=()
+    #无参数，输出默认
+    if [ $# -eq 0 ] ;then re_print 0; re_print 8; fi
     #依次读取参数，并判断是否全部输出过
     while [ "${#re_printed[@]}" -lt 5 ] && [[ $# -ge 1 ]] ;do
         key="$1"

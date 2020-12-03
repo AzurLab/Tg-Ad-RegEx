@@ -43,32 +43,32 @@ re_print(){
     if [ "${re_printed[$1]}" != "1" ] ;then
         re_printed[$1]=1
         case "$1" in
-           1)
+            1)
                 #文件
                 echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
                 echo "(?i:\.(${file_suffix})\$)===delete"
                 ;;
-           2)
+            2)
                 #单
                 echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
                 echo "(?i:(${s_keyword}))===delete"
                 ;;
-           4)
+            4)
                 #双
                 echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
                 echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1}))===delete"
                 ;;
-           8)
+            8)
                 #昵称
                 echo -e "\033[7;32madregex: Nickname Rule 昵称规则\033[0m"
                 echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
                 ;;
-           0)
+            0)
                 #合并
                 echo -e "\033[7;32madregex: All in One Rule 合并规则\033[0m"
                 echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
                 ;;
-           *)
+            *)
                 #
                 ;;
         esac

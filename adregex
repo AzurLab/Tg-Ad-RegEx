@@ -70,7 +70,7 @@ parameter_read(){
                     error="true"
                     break
                 else
-                    while [ "$factor" -ge 2 ] ;do
+                    while [ "$factor" -gt 1 ] ;do
                         factor=$((factor/2))
                         while [ "$key" -ge "$factor" ] ;do
                             let key-=$factor

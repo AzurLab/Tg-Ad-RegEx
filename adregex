@@ -17,29 +17,29 @@ file_suffix='exe|cmd|com|bat|scr|cpl|vbs'
 
 #输出规则
 re_print(){
-case "$1" in
-    1)
-        #文件
-        echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
-        echo "(?i:\.(${file_suffix})\$)===delete"
-        ;;
-    2)
-        #单
-        echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
-        echo "(?i:(${s_keyword}))===delete"
-        ;;
-    4)
-        #双
-        echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
-        echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
-        ;;
-    8);&
-    *)
-        #合并
-        echo -e "\033[7;32madregex:All in One Rule 合并规则\033[0m"
-        echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
-        ;;
-esac
+    case "$1" in
+        1)
+            #文件
+            echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
+            echo "(?i:\.(${file_suffix})\$)===delete"
+            ;;
+       2)
+            #单
+            echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
+            echo "(?i:(${s_keyword}))===delete"
+            ;;
+       4)
+            #双
+            echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
+            echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1}))===delete"
+            ;;
+       8);&
+       *)
+            #合并
+            echo -e "\033[7;32madregex:All in One Rule 合并规则\033[0m"
+            echo "(?i:(${b_keyword1}).*(${b_keyword2})|(${b_keyword2}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
+            ;;
+    esac
 
 }
 

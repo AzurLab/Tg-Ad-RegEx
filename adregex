@@ -31,7 +31,7 @@ file_suffix='exe|cmd|com|bat|scr|cpl|vbs'
 # 昵称规则 针对昵称 由于其特殊性，暂不能包含在合并规则中
 # 自动包含双关键词1和2，但不包含2p
 #
-nickname='^(在?菲)|^(1+|小?仙女)$|头像|资料'
+nickname='^(在?菲)|^(1|小?仙女)$|头像|资料'
 
 ##############################
 # 以下是脚本
@@ -43,32 +43,32 @@ re_print(){
     if [ "${re_printed[$1]}" != "1" ] ;then
         re_printed[$1]=1
         case "$1" in
-            1)
+           1)
                 #文件
-                echo -e "\033[7;32madregex: File Suffix Rule 文件后缀规则\033[0m"
+                echo -e "\033[7;96madregex: File Suffix Rule 文件后缀规则\033[0m"
                 echo "(?i:\.(${file_suffix})\$)===delete"
                 ;;
-            2)
+           2)
                 #单
-                echo -e "\033[7;32madregex: Independent Rule 单关键词规则\033[0m"
+                echo -e "\033[7;96madregex: Independent Rule 单关键词规则\033[0m"
                 echo "(?i:(${s_keyword}))===delete"
                 ;;
-            4)
+           4)
                 #双
-                echo -e "\033[7;32madregex: Joint Rule 双关键词规则\033[0m"
+                echo -e "\033[7;96madregex: Joint Rule 双关键词规则\033[0m"
                 echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1}))===delete"
                 ;;
-            8)
+           8)
                 #昵称
-                echo -e "\033[7;32madregex: Nickname Rule 昵称规则\033[0m"
+                echo -e "\033[7;96madregex: Nickname Rule 昵称规则\033[0m"
                 echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
                 ;;
-            0)
+           0)
                 #合并
-                echo -e "\033[7;32madregex: All in One Rule 合并规则\033[0m"
+                echo -e "\033[7;96madregex: All in One Rule 合并规则\033[0m"
                 echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
                 ;;
-            *)
+           *)
                 #
                 ;;
         esac
@@ -83,8 +83,13 @@ help_print(){
 
 # 输出错误
 err_print(){
-    echo -e "\033[7;32madregex: invalid parameter value '$1'\033[0m"
+    echo -e "\033[1;91;103madregex: invalid parameter value '$1'\033[0m"
     help_print
+}
+
+# 输出再见
+goodbye_print(){
+    echo -e "\033[7;92madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
 }
 
 
@@ -147,4 +152,4 @@ while [ "$error" == "true" ]; do
     fi
 done
 
-echo -e "\033[7;32madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
+goodbye_print

@@ -1,5 +1,4 @@
-##############################
-# ! /system/bin/sh
+#! /system/bin/sh
 ##############################
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
 # 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex

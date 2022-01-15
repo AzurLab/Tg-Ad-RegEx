@@ -138,6 +138,8 @@ parameter_read(){
                 help_print
                 break
                 ;;
+            win)
+                re_print 0 | clip
             *)
                 error="true"
                 break

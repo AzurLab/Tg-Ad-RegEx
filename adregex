@@ -86,7 +86,7 @@ re_print(){
            win)
                 #合并(鲁小迅格式,忽略管理员,拷贝至Windows剪贴板)
                 echo -e "\033[7;96madregex: All in One Rule 合并规则 For WSL\033[0m"
-                echo "notadmin:(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===检测到广告，已删除，如误删请联系群组管理员。（该回复将在60秒后自动删除）&&delete" | clip
+                echo "notadmin:(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===检测到广告，已删除，如误删请联系群组管理员。（该回复将在60秒后自动删除）&&delete" | clip.exe
                 echo "已拷贝至剪贴板"
                 ;;
            *)

@@ -17,6 +17,10 @@ Telegram 去广告正则
 
 `wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex`
 
+<details>
+
+<summary>规则模板(非及时更新)</summary>
+
 ## 双关键词匹配规则
 
 ### 规则模板：
@@ -82,3 +86,4 @@ Telegram 去广告正则
 ## 其他规则
 
 ### 待补充
+</details>

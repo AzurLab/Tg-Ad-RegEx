@@ -64,9 +64,9 @@ re_print(){
                 echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
                 ;;
            0)
-                #合并
+                #合并(鲁小迅格式, 忽略管理员)
                 echo -e "\033[7;96madregex: All in One Rule 合并规则\033[0m"
-                echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===delete"
+                echo "notadmin:(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===检测到广告，已删除，如误删请联系群组管理员。（该回复将在60秒后自动删除）&&delete"
                 ;;
            *)
                 #

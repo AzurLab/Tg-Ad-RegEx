@@ -71,7 +71,12 @@ Telegram 去广告正则
 
 或 `/add (?i:().*()|().*()|()|\.()$)===delete`
 
-## 最终规则
+</details>
+
+<details>
+
+<summary>生成的规则(非及时更新)</summary>
+
 
 ### 关键词机器人版本
 

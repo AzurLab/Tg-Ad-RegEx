@@ -2,9 +2,10 @@
 ##############################
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
 # 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
+# 当前适配 無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
 ##############################
 # 可自定义关键词
-# ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}
+# ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_type} ${nickname}
 ##############################
 # 双关键词规则 两个关键词同时出现生效
 
@@ -34,28 +35,43 @@ b_keyword2="电报|tg|telegram|出(?!现)|售|卖|收|\
 
 # 双关键词2plus 单独出现时，误杀可能性较大，为了昵称规则的引用性，单独列出
 
-b_keyword2p="菲|仙女"
+b_keyword2p=""
 
-# 单关键词规则 每条相互独立生效
+# 独立规则 独立生效
 
 s_keyword="^(dd|滴滴|签到)\$|小哥哥.*在(不在|吗)|需要.*联系|[v薇]信|^加v|水路.*往返"
 
-# 文件后缀规则 删除可执行文件
+# 文件类型 删除文件
 
-file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|(7|b|g|x)?z[0-9]?"
+file_type="exe|cmd|com|bat|scr|cpl|vbs|cab|(7|b|g|x)?z[0-9]?"
 
-# 昵称规则 针对昵称 由于其特殊性，暂不能包含在合并规则中
-# 输出时 自动包含双关键词1和2，但不包含2p
-#
-nickname="^(在?菲)|^(1+|小?仙女)\$|头像|资料|水路|往返"
+# 文件名 删除文件 UC震惊部自叹不如
+
+file_name="菲律宾|柬埔寨|金边|男子|监控|拍下|全过程|详情|警方"
+
+# 昵称规则
+
+nickname="^(在?菲)|^(1+|小?仙女)\$|头像|资料|水路|往返|免费|翻墙|中文"
 
 ##############################
 # 以下是脚本
 ##############################
 
 # 输出规则
-allin1_print(){
-    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===random::{检测到广告，已删除，如误删请联系群组管理员。\$\$已击毙广告\$\$人工智障已删除广告\$\$发广告的还能说话吗}||delete"
+text_rule_print(){
+    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_type})\$)===检测到广告，已删除，如误删请联系群组管理员。&&小虎鲨疯了&&已击毙广告&&人工智障已删除广告&&发广告的还能说话吗&&del=x=0、y=60"
+}
+
+file_type_print(){
+    echo "/add@WuMingv2Bot ftype=(${file_type})===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+}
+
+file_name_print(){
+    echo "/add@WuMingv2Bot fname=(${file_name})===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+}
+
+name_rule_print(){
+    echo "/add@WuMingv2Bot name=(${nickname}|${b_keyword1})===可疑昵称，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
 }
 
 re_print(){
@@ -64,34 +80,34 @@ re_print(){
         re_printed[$1]=1
         case "$1" in
            1)
-                #文件
-                echo -e "\033[7;96madregex: File Suffix Rule 文件后缀规则\033[0m"
-                echo "(?i:\.(${file_suffix})\$)===delete"
+                #默认输出
+                echo -e "\033[7;96madregex: 文本消息规则\033[0m"
+                text_rule_print
                 ;;
            2)
-                #单
-                echo -e "\033[7;96madregex: Independent Rule 单关键词规则\033[0m"
-                echo "(?i:(${s_keyword}))===delete"
+                #文件类型
+                echo -e "\033[7;96madregex: 文件类型规则\033[0m"
+                file_type_print
                 ;;
            4)
-                #双
-                echo -e "\033[7;96madregex: Joint Rule 双关键词规则\033[0m"
-                echo "(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1}))===delete"
+                #文件名
+                echo -e "\033[7;96madregex: 文件名规则\033[0m"
+                file_name_print
                 ;;
            8)
                 #昵称
-                echo -e "\033[7;96madregex: Nickname Rule 昵称规则\033[0m"
-                echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
+                echo -e "\033[7;96madregex: 昵称规则\033[0m"
+                name_rule_print
                 ;;
-           0)
-                #合并(我们永远怀念鲁小迅, 现已适配@WuMingv2Bot)
-                echo -e "\033[7;96madregex: All in One Rule 合并规则\033[0m"
-                allin1_print
+           16)
+                #
+                echo -e "\033[7;96madregex: 规则\033[0m"
+                
                 ;;
            win)
                 #合并(拷贝至Windows剪贴板)
-                echo -e "\033[7;96madregex: All in One Rule 合并规则 For Windows\033[0m"
-                allin1_print | clip.exe
+                echo -e "\033[7;96madregex: 文本消息规则 For Windows\033[0m"
+                text_rule_print | clip.exe
                 echo "已自动拷贝至剪贴板"
                 ;;
            *)
@@ -124,12 +140,12 @@ parameter_read(){
     #初始化输出记录
     re_printed=()
     #无参数，输出默认
-    if [ $# -eq 0 ] ;then re_print 0; re_print 8; fi
+    if [ $# -eq 0 ] ;then parameter_read 0; fi
     #依次读取参数，并判断是否全部输出过
     while [ "${#re_printed[@]}" -lt 5 ] && [[ $# -ge 1 ]] ;do
         key="$1"
         case $key in
-            0) re_print 0; re_print 8;;
+            0) re_print 8; re_print 4; re_print 2; re_print 1;;
             [1-9]) ;& [1-9][0-9])
                 factor=16 # 2^4
                 if [ "$key" -ge "$factor" ]; then

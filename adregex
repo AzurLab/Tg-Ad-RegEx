@@ -5,7 +5,7 @@
 # 当前适配 無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
 ##############################
 # 可自定义关键词
-# ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_type} ${nickname}
+# ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}
 ##############################
 # 双关键词规则 两个关键词同时出现生效
 
@@ -29,7 +29,7 @@ b_keyword2="电报|tg|telegram|出(?!现)|售|卖|收|\
 私|[v薇]信|[加\+][vq薇]|\
 真[人实]|实名|认证|筛选|解封|担保|专[业供]|精准|实力|高端|正规|\
 供应|大量|批发|[现有][货🔥]|货源|直出|安排|\
-个人|团队|工作室|\
+(?<!那)个人|团队|工作室|\
 [卡咔]接|无押|押金|点位|[0-9]点|高价|免费(测试|试用)|出水|全球|每日更新|\
 全新|原装|[一二三]手"
 
@@ -41,17 +41,18 @@ b_keyword2p="菲"
 
 s_keyword="^(dd|滴滴|签到)\$|小哥哥.*在(不在|吗)|需要.*联系|[v薇]信|^加v|水路.*往返"
 
-# 文件类型 删除文件
+# 文件后缀
 
-file_type="exe|cmd|com|bat|scr|cpl|vbs|cab|(7|b|g|x)?z[0-9]?"
+file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|g|x)?z[0-9]?"
 
 # 文件名 删除文件 UC震惊部自叹不如
 
 file_name="菲律宾|柬埔寨|金边|缅甸|诈骗|\
-免费|下载|跳转|点击|打开|观看|片源|土豪|啪|无套|内射|鲍鱼|尤物|\
+免费|下载|跳转|点击|打开|观看|片源|流畅|\
+土豪|啪|无套|内射|肛交|灌肠|鲍鱼|尤物|骚|嫩|母狗|SM|sm|\
 监控|记录仪|拍下|全过程|经过|详情|警方|开枪|击毙|案件|\
 残忍|虐待|血腥|曝光|流出|\
-男子|身份|身亡|死者|"
+男子|身份|身亡|死者"
 
 # 昵称规则 不会有正常人名字里面有这些吧
 
@@ -70,12 +71,12 @@ text_rule_print(){
     echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===疑似广告，已删除，如误删请联系群组管理员。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=60"
 }
 
-file_type_print(){
-    echo "/add@WuMingv2Bot ftype=(${file_type})===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+file_suffix_print(){
+    echo "/add@WuMingv2Bot ftype=(${file_suffix})===可疑文件类型，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
 }
 
-file_name_print(){
-    echo "/add@WuMingv2Bot fname=(${file_name})===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+file_rule_print(){
+    echo "/add@WuMingv2Bot fname=(${file_name}|(\.${file_suffix}\$))===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
 }
 
 name_rule_print(){
@@ -89,32 +90,27 @@ re_print(){
         case "$1" in
            1)
                 #默认输出
-                echo -e "\033[7;96madregex: 文本消息规则\033[0m"
+                echo -e "\033[35madregex: 文本消息规则\033[0m"
                 text_rule_print
                 ;;
            2)
-                #文件类型
-                echo -e "\033[7;96madregex: 文件类型规则\033[0m"
-                file_type_print
+                #文件
+                echo -e "\033[35madregex: 文件规则\033[0m"
+                file_rule_print
                 ;;
            4)
-                #文件名
-                echo -e "\033[7;96madregex: 文件名规则\033[0m"
-                file_name_print
+                #昵称
+                echo -e "\033[35madregex: 昵称规则\033[0m"
+                name_rule_print
                 ;;
            8)
                 #昵称
-                echo -e "\033[7;96madregex: 昵称规则\033[0m"
+                echo -e "\033[35madregex: 昵称规则\033[0m"
                 name_rule_print
-                ;;
-           16)
-                #
-                echo -e "\033[7;96madregex: 规则\033[0m"
-                
                 ;;
            win)
                 #合并(拷贝至Windows剪贴板)
-                echo -e "\033[7;96madregex: 文本消息规则 For Windows\033[0m"
+                echo -e "\033[35madregex: 文本消息规则 For Windows\033[0m"
                 text_rule_print | clip.exe
                 echo "已自动拷贝至剪贴板"
                 ;;
@@ -133,13 +129,13 @@ help_print(){
 
 # 输出错误
 err_print(){
-    echo -e "\033[1;91;103madregex: invalid parameter value \"$1\"\033[0m"
+    echo -e "\033[37;41madregex: invalid parameter value \"$1\"\033[0m"
     help_print
 }
 
 # 输出再见
 goodbye_print(){
-    echo -e "\033[7;92madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
+    echo -e "\033[92madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
 }
 
 
@@ -153,7 +149,7 @@ parameter_read(){
     while [ "${#re_printed[@]}" -lt 5 ] && [[ $# -ge 1 ]] ;do
         key="$1"
         case $key in
-            0) re_print 8; re_print 4; re_print 2; re_print 1;;
+            0) re_print 4; re_print 2; re_print 1;;
             [1-9]) ;& [1-9][0-9])
                 factor=16 # 2^4
                 if [ "$key" -ge "$factor" ]; then

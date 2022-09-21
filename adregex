@@ -42,7 +42,7 @@ s_keyword="^(dd|滴滴|签到)\$|小哥哥.*在(不在|吗)|需要.*联系|[v薇
 
 # 文件后缀规则 删除可执行文件
 
-file_suffix="exe|cmd|com|bat|scr|cpl|vbs"
+file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|(7|b|g|x)?z[0-9]?"
 
 # 昵称规则 针对昵称 由于其特殊性，暂不能包含在合并规则中
 # 输出时 自动包含双关键词1和2，但不包含2p
@@ -55,7 +55,7 @@ nickname="^(在?菲)|^(1+|小?仙女)\$|头像|资料|水路|往返"
 
 # 输出规则
 allin1_print(){
-    echo "/add@keyword_reply_bot re:(?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===random::{检测到广告，已删除，如误删请联系群组管理员。\$\$已击毙广告\$\$人工智障已删除广告\$\$发广告的还能说话吗}||delete"
+    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword})|\.(${file_suffix})\$)===random::{检测到广告，已删除，如误删请联系群组管理员。\$\$已击毙广告\$\$人工智障已删除广告\$\$发广告的还能说话吗}||delete"
 }
 
 re_print(){
@@ -84,7 +84,7 @@ re_print(){
                 echo "name:(${nickname}|${b_keyword1}|${b_keyword2})===delete"
                 ;;
            0)
-                #合并(我们永远怀念鲁小迅, 现已适配关键词机器人)
+                #合并(我们永远怀念鲁小迅, 现已适配@WuMingv2Bot)
                 echo -e "\033[7;96madregex: All in One Rule 合并规则\033[0m"
                 allin1_print
                 ;;

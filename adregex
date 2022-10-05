@@ -4,6 +4,10 @@
 # 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
 # 当前适配 無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
 ##############################
+# 规则备忘录
+# 1.机器人推广链接:
+# /add@WuMingv2Bot (?i:bot\?start)===推广链接，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15
+##############################
 # 可自定义关键词
 # ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}
 ##############################
@@ -17,7 +21,7 @@ b_keyword1="广告|业务|服务器|cdn|阿里云|腾讯云|高防|vps|独服|�
 股民|小群|博彩|菠菜|亚博|棋牌|bc|狗推|人事|兼职|招([人聘募]|代理)|\
 暗网|资源|数据|[黑灰]产|支付|件套|(黑|银行|信用)卡|\
 对公|[账公个私]户|代[收付发]|洗[钱米]|漂白|资金|转账|usdt|[回收出]u|套现|换汇|贷款|网贷|送货|跑分|\
-赚钱|卡[商王]|查[询人车房户档]|定位|监听|人鬼|开房|社工|(苹果|iOS|企业)签名|火种|蓝标|注册|\
+赚钱|卡[商王]|查[询人车房户档]|定位|监听|人[鬼轨]|开房|社工|(苹果|iOS|企业)签名|火种|蓝标|注册|\
 莆田|手表|高仿|[一1][比对][一1]|水鬼|\
 租房|房源|\
 [一二三]手"
@@ -29,6 +33,7 @@ b_keyword2="电报|tg|telegram|出(?!现)|售|卖|收|\
 私|[v薇]信|[加\+][vq薇]|\
 真[人实]|实名|认证|筛选|解封|担保|专[业供]|精准|实力|高端|正规|\
 供应|大量|批发|[现有][货🔥]|货源|直出|安排|\
+共济会|军火|假钞|偷渡|暗杀|走私|毒品|\
 (?<!那)个人|团队|工作室|\
 [卡咔]接|无押|押金|点位|[0-9]点|高价|免费(测试|试用)|出水|全球|每日更新|\
 全新|原装|[一二三]手"
@@ -48,8 +53,9 @@ file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|g|x)?z[0-9]?"
 # 文件名 删除文件 UC震惊部自叹不如
 
 file_name="菲律宾|柬埔寨|金边|缅甸|诈骗|\
-免费|下载|跳转|点击|打开|观看|片源|流畅|\
-土豪|啪|无套|内射|肛交|灌肠|鲍鱼|尤物|骚|嫩|母狗|SM|sm|\
+免 *费|下 *载|跳 *转|点 *击|打 *开|观 *看|片 *源|流畅|精 *品|视 *频|进 *群\
+土 *豪|啪|无 *套|内 *射|肛 *交|灌 *肠|鲍 *鱼|尤 *物|骚|嫩|母 *狗|SM|sm|\
+[幼呦] *童|母 *子|人 *兽|学 *生|\
 监控|记录仪|拍下|全过程|经过|详情|警方|开枪|击毙|案件|\
 残忍|虐待|血腥|曝光|流出|\
 男子|身份|身亡|死者"
@@ -59,7 +65,7 @@ file_name="菲律宾|柬埔寨|金边|缅甸|诈骗|\
 nickname="^(在?菲)|^(1+|小?仙女)\$|\
 头像|资料|精准|\
 全球|正规|水路|往返|特区|\
-共富|国际|娱乐|开户|\
+共富|国际|娱乐|开户|车队|\
 免费|翻墙|梯子|中文|电报|tg|telegram"
 
 ##############################
@@ -68,19 +74,20 @@ nickname="^(在?菲)|^(1+|小?仙女)\$|\
 
 # 输出规则
 text_rule_print(){
-    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===疑似广告，已删除，如误删请联系群组管理员。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=60"
+    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===\
+疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=30"
 }
 
 file_suffix_print(){
-    echo "/add@WuMingv2Bot ftype=(${file_suffix})===可疑文件类型，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+    echo "/add@WuMingv2Bot ftype=(${file_suffix})===可疑文件类型，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 file_rule_print(){
-    echo "/add@WuMingv2Bot fname=(${file_name}|(\.${file_suffix}\$))===可疑文件，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+    echo "/add@WuMingv2Bot fname=(${file_name}|(\.${file_suffix}\$))===可疑文件，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 name_rule_print(){
-    echo "/add@WuMingv2Bot name=(${nickname}|${b_keyword1})===可疑昵称，禁言1分钟&&小虎鲨疯了，禁言1分钟&&adm=ban=60&&del=x=0、y=60"
+    echo "/add@WuMingv2Bot name=(${nickname}|${b_keyword1})===可疑昵称，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 re_print(){

@@ -101,5 +101,5 @@ Telegram 去广告正则
 `/add@WuMingv2Bot (?i:bot\?start)===推广链接，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15`
 
 ### 待补充
-~~~~
+
 </details>

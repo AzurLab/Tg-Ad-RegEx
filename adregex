@@ -75,7 +75,7 @@ nickname="^(在?菲)|^(1+|小?仙女)\$|\
 # 输出规则
 text_rule_print(){
     echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===\
-疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=30"
+疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=15"
 }
 
 file_suffix_print(){

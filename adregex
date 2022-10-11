@@ -48,7 +48,7 @@ s_keyword="^(dd|滴滴|签到)\$|小哥哥.*在(不在|吗)|需要.*联系|[v薇
 
 # 文件后缀
 
-file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|g|x)?z[0-9]?"
+file_suffix="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|x)?z[0-9]?"
 
 # 文件名 删除文件 UC震惊部自叹不如
 
@@ -75,19 +75,19 @@ nickname="^(在?菲)|^(1+|小?仙女)\$|\
 # 输出规则
 text_rule_print(){
     echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===\
-疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=15"
+疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&小虎鲨不喜欢你&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=15"
 }
 
 file_suffix_print(){
-    echo "/add@WuMingv2Bot ftype=(${file_suffix})===可疑文件类型，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo "/add@WuMingv2Bot ftype=(?i:${file_suffix})===可疑文件类型，警告1次，3次封禁&&小虎鲨觉得你的文件很可疑，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 file_rule_print(){
-    echo "/add@WuMingv2Bot fname=(${file_name}|\.(${file_suffix})\$)===可疑文件，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo "/add@WuMingv2Bot fname=(?i:${file_name}|\.(${file_suffix})\$)===可疑文件，警告1次，3次封禁&&小虎鲨觉得你的文件有问题，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 name_rule_print(){
-    echo "/add@WuMingv2Bot name=(${nickname}|${b_keyword1})===可疑昵称，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo "/add@WuMingv2Bot name=(?i:${nickname}|${b_keyword1})===可疑昵称，警告1次，3次封禁&&小虎鲨不喜欢你的名字，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
 }
 
 re_print(){

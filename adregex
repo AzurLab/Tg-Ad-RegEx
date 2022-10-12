@@ -2,7 +2,7 @@
 ##############################
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
 # 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
-# 当前适配無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
+# 当前适配 無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
 ##############################
 # 规则备忘录
 # 1.机器人推广链接:

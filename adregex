@@ -6,7 +6,7 @@
 ##############################
 # 规则备忘录
 # 1.机器人推广链接:
-# /add@WuMingv2Bot (?i:bot\?start)===推广链接，警告1次，3次封禁&&小虎鲨疯了，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15
+# /add@WuMingv2Bot (?i:bot\?start)===推广链接，警告1次，3次封禁&&小虎鲨不喜欢你发的链接，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15
 ##############################
 # 可自定义关键词
 # ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}

@@ -74,20 +74,20 @@ nickname="^(在?菲)|^(1+|小?仙女)\$|\
 
 # 输出规则
 text_rule_print(){
-    echo "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===\
-疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&小虎鲨不喜欢你&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=15"
+    echo -e "/add@WuMingv2Bot (?i:(${b_keyword1}).*(${b_keyword2}|${b_keyword2p})|(${b_keyword2}|${b_keyword2p}).*(${b_keyword1})|(${s_keyword}))===\
+疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&小虎鲨不喜欢你&&已击毙广告&&发广告的还能说话吗&&del=x=0、y=15\n"
 }
 
 file_suffix_print(){
-    echo "/add@WuMingv2Bot ftype=(?i:${file_suffix})===可疑文件类型，警告1次，3次封禁&&小虎鲨觉得你的文件很可疑，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo -e "/add@WuMingv2Bot ftype=(?i:${file_suffix})===可疑文件类型，警告1次，3次封禁&&小虎鲨觉得你的文件很可疑，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15\n"
 }
 
 file_rule_print(){
-    echo "/add@WuMingv2Bot fname=(?i:${file_name}|\.(${file_suffix})\$)===可疑文件，警告1次，3次封禁&&小虎鲨觉得你的文件有问题，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo -e "/add@WuMingv2Bot fname=(?i:${file_name}|\.(${file_suffix})\$)===可疑文件，警告1次，3次封禁&&小虎鲨觉得你的文件有问题，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15\n"
 }
 
 name_rule_print(){
-    echo "/add@WuMingv2Bot name=(?i:${nickname}|${b_keyword1})===可疑昵称，警告1次，3次封禁&&小虎鲨不喜欢你的名字，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
+    echo -e "/add@WuMingv2Bot name=(?i:${nickname}|${b_keyword1})===可疑昵称，警告1次，3次封禁&&小虎鲨不喜欢你的名字，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15\n"
 }
 
 re_print(){
@@ -97,22 +97,25 @@ re_print(){
         case "$1" in
            1)
                 #默认输出
-                echo -e "\033[35madregex: 文本消息规则\033[0m"
+                #echo -e "\033[35madregex: 文本消息规则\033[0m"
+                echo -e "Adregex 文本消息规则:\n"
                 text_rule_print
                 ;;
            2)
                 #文件
-                echo -e "\033[35madregex: 文件规则\033[0m"
+                #echo -e "\033[35madregex: 文件规则\033[0m"
+                echo -e "Adregex 文件规则:\n"
                 file_rule_print
                 ;;
            4)
                 #昵称
-                echo -e "\033[35madregex: 昵称规则\033[0m"
+                #echo -e "\033[35madregex: 昵称规则\033[0m"
+                echo -e "Adregex 昵称规则:\n"
                 name_rule_print
                 ;;
            8)
                 #昵称
-                echo -e "\033[35madregex: 昵称规则\033[0m"
+                #echo -e "\033[35madregex: 昵称规则\033[0m"
                 name_rule_print
                 ;;
            win)
@@ -142,7 +145,8 @@ err_print(){
 
 # 输出再见
 goodbye_print(){
-    echo -e "\033[92madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
+    #echo -e "\033[92madregex: 已为您生成 ${#re_printed[@]} 条规则，感谢使用\033[0m"
+    echo -e "Adregex 已为您生成 ${#re_printed[@]} 条规则，感谢使用\n"
 }
 
 

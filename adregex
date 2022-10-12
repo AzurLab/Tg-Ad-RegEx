@@ -3,17 +3,17 @@
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
 # 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
 # 当前适配 無名 v2 机器人 @WuMingv2Bot (我们永远怀念鲁小迅)
+
 ##############################
 # 规则备忘录
 # 1.机器人推广链接:
 # /add@WuMingv2Bot (?i:bot\?start)===推广链接，警告1次，3次封禁&&小虎鲨不喜欢你发的链接，警告1次，3次封禁&&adm=ban=300&&adm=warn=1&&del=x=0、y=15
+
 ##############################
 # 以下为广告关键词参数
 # ${dependentPatternsPart1} ${dependentPatternsPart2} ${independentPatterns} ${suffixPatterns} ${nicknamePatterns} ${fileNamePatterns}
-##############################
 
 # 双关键词1 以广告主体为主
-
 dependentPatternsPart1="\
 业务|服务器|cdn|阿里云|腾讯云|高防|vps|独服|杜甫|平台|搭建|定制|\
 推广|引流|拉[人群裙]|[群裙]发|小群|[吸增加]粉|关注|点赞|评论|水军|活跃|(wz|僵尸|精准)粉|\
@@ -28,7 +28,6 @@ dependentPatternsPart1="\
 暗网|共济会|军火|偷渡|暗杀|走私|毒品"
 
 # 昵称规则 不便放入关键词中的高频词汇单独列出，不会有正常人名字里面有这些吧
-
 nicknamePatterns="\
 ^(在?菲)|^(1+|小?仙女)\$|\
 头像|资料|精准|\
@@ -38,7 +37,6 @@ nicknamePatterns="\
 广告"
 
 # 双关键词2 以对广告主体的修饰为主
-
 dependentPatternsPart2="\
 出(?![现来去了门汗生太发口声戏版油道声处国场品])|售|卖|收|\
 详[情询]|面交|需要|咨询|合作|[点加看找]我|点头像|dd|滴滴|联系|\
@@ -50,17 +48,13 @@ dependentPatternsPart2="\
 全新|原装|[一二三]手"
 
 # 独立规则 独立生效
-
 independentPatterns="\
 ^(dd|滴滴|签到)\$|小哥哥.*在(不在|吗)|需要.*联系|[v薇]信|^加v|水路.*往返"
 
-
 # 文件后缀
-
 suffixPatterns="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|x)?z[0-9]?"
 
 # 文件名 UC震惊部自叹不如
-
 fileNamePatterns="\
 诈骗|菲律宾|柬埔寨|金边|缅甸|老挝|越南|印度?尼西?亚?|\
 视 *频|免 *费|下 *载|跳 *转|点 *击|打 *开|观 *看|片 *源|流畅|精 *品|进 *群|\
@@ -72,7 +66,6 @@ fileNamePatterns="\
 
 ##############################
 # 以下为参数及函数
-##############################
 
 # 多彩输出参数
 colorful="true"
@@ -145,7 +138,6 @@ aprint(){
         fi
     printText=""
     fi
-
 }
 
 # 规则生成
@@ -178,7 +170,6 @@ ruleGenerate(){
                 ;;
         esac
     fi
-
 }
 
 # 读取，切割参数
@@ -247,7 +238,6 @@ checkParameter(){
 
 ##############################
 # 以下为主程序
-##############################
 
 # 读取传入的全部参数
 readParameter $@

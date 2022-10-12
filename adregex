@@ -12,7 +12,7 @@
 # ${b_keyword1} ${b_keyword2} ${b_keyword2p} ${s_keyword} ${file_suffix} ${nickname}
 ##############################
 # 双关键词规则 两个关键词同时出现生效
-# test
+
 # 双关键词1 以广告主体为主
 
 b_keyword1="业务|服务器|cdn|阿里云|腾讯云|高防|vps|独服|杜甫|平台|搭建|定制|\

@@ -27,7 +27,7 @@ dependentPatternsPart1="\
 [赚搞][钱米]|租房|房源|\
 暗网|共济会|军火|偷渡|暗杀|走私|毒品"
 
-# 昵称规则 不便放入关键词中的高频词汇单独列出，不会有正常人名字里面有这些吧
+# 昵称规则 不便放入关键词中的高频词汇单独列出
 nicknamePatterns="\
 ^(在?菲)|^(1+|小?仙女)\$|\
 头像|资料|精准|\
@@ -36,7 +36,7 @@ nicknamePatterns="\
 免费|翻墙|梯子|中文|电报|tg|telegram|\
 广告"
 
-# 双关键词2 以对广告主体的修饰为主
+# 双关键词2 以对广告主体的修饰、限制为主
 dependentPatternsPart2="\
 出(?![现来去了门汗生太发口声戏版油道声处国场品])|售|卖|收|\
 详[情询]|面交|需要|咨询|合作|[点加看找]我|点头像|dd|滴滴|联系|\
@@ -54,7 +54,7 @@ independentPatterns="\
 # 文件后缀
 suffixPatterns="exe|cmd|com|bat|scr|cpl|vbs|cab|lzh|uue|(7|b|x)?z[0-9]?"
 
-# 文件名 UC震惊部自叹不如
+# 文件名
 fileNamePatterns="\
 诈骗|菲律宾|柬埔寨|金边|缅甸|老挝|越南|印度?尼西?亚?|\
 视 *频|免 *费|下 *载|跳 *转|点 *击|打 *开|观 *看|片 *源|流畅|精 *品|进 *群|\
@@ -73,46 +73,46 @@ colorful="true"
 # 输出函数
 aprint(){
     printColor="0"
+    if [ "$2" == "noLF" ]; then unset printLF; else printLF="\n"; fi
     case "$1" in
     textHint)
-        printColor="35"
-        printText="Adregex 文本消息规则:\n"
+        printColor="1;35"
+        printText="Adregex 文本消息规则:"
     ;;
     text)
-        printText="/add@WuMingv2Bot (?i:(${dependentPatternsPart1}).*(${dependentPatternsPart2})|(${dependentPatternsPart2}).*(${dependentPatternsPart1})|(${independentPatterns}))===疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&小虎鲨不喜欢你&&已击毙广告&&你再想想&&del=x=0、y=15\n"
+        printText="/add@WuMingv2Bot (?i:(${dependentPatternsPart1}).*(${dependentPatternsPart2})|(${dependentPatternsPart2}).*(${dependentPatternsPart1})|(${independentPatterns}))===疑似广告，已删除，如误删请联系 @Durovs_Legacy。&&小虎鲨疯了&&小虎鲨不喜欢你&&已击毙广告&&你再想想&&del=x=0、y=15"
     ;;
     nameHint)
-        printColor="35"
-        printText="Adregex 昵称规则:\n"
+        printColor="1;35"
+        printText="Adregex 昵称规则:"
     ;;
     name)
-        printText="/add@WuMingv2Bot name=(?i:${nicknamePatterns}|${dependentPatternsPart1})===可疑昵称，警告1次&&小虎鲨不喜欢你的名字，警告1次&&adm=ban=300&&adm=warn=1&&del=x=0、y=15\n"
+        printText="/add@WuMingv2Bot name=(?i:${nicknamePatterns}|${dependentPatternsPart1})===可疑昵称，警告1次&&小虎鲨不喜欢你的名字，警告1次&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
     ;;
     fileHint)
-        printColor="35"
-        printText="Adregex 文件规则:\n"
+        printColor="1;35"
+        printText="Adregex 文件规则:"
     ;;
     file)
-        printText="/add@WuMingv2Bot fname=(?i:${fileNamePatterns}|\.(${suffixPatterns})\$)===可疑文件，警告1次&&小虎鲨觉得你的文件有问题，警告1次&&adm=ban=300&&adm=warn=1&&del=x=0、y=15\n"
+        printText="/add@WuMingv2Bot fname=(?i:\.(${suffixPatterns})\$|${fileNamePatterns})===可疑文件，警告1次&&小虎鲨觉得你发的文件有问题，警告1次&&adm=ban=300&&adm=warn=1&&del=x=0、y=15"
     ;;
     # 输出Windows规则并拷贝
     winHint)
-        printColor="35"
+        printColor="1;35"
         printText="Adregex 文本消息规则 For Windows 已自动拷贝至剪贴板"
     ;;
     win)
         colorful="false"
-        aprint text
+        aprint text noLF
     ;;
     # 输出帮助
     help)
-        printText="Adregex 帮助:\n输入 1 获取文本消息规则\n输入 2 获取昵称规则\n输入 4 获取文件规则\n输入 8 获取昵称规则\n输入 0 或什么都不输入 获取全部规则\n同时获取多条规则，请将以上参数相加或者使用空格隔开\n"
+        printText="Adregex 帮助:\n输入 1 获取文本消息规则\n输入 2 获取昵称规则\n输入 4 获取文件规则\n输入 0 或什么都不输入 获取全部规则\n同时获取多条规则，请将以上参数相加或者使用空格隔开"
     ;;
     # 输出错误
     error)
-        printColor="37;41"
+        printColor="1;37;41"
         printText="Adregex: invalid parameter value \"$2\""
-        aprint help
     ;;
     askParameter)
         printText="请重新输入参数，或输入exit退出："
@@ -122,27 +122,25 @@ aprint(){
     ;;
     # 输出再见
     goodbye)
-        printColor="92"
+        printColor="1;32"
         printText="Adregex 已为您生成 ${#ruleGenerated[@]} 条规则，感谢使用"
+        unset printLF
     ;;
-    # 其他情况
+    # 其他情况，输出所有参数
     *)
-        printText="Invalid input!\n"
+        printText="$*"
     ;;
     esac
-    if [ "${printText}" != "" ]; then 
-        if [ "$colorful" == "true" ]; then
-            echo -e "\033[${printColor}m${printText}\033[0m"
-        else
-            echo -e "${printText}"
-        fi
-    printText=""
+    if [ "${printText}" != "" ]; then
+        if [ "$colorful" == "true" ]; then colorCode="\033[${printColor}m";colorReset="\033[0m"; fi
+        echo -e "${colorCode}${printText}${colorReset}${printLF}"
+        unset colorCode printText colorReset printLF
     fi
 }
 
 # 规则生成
 ruleGenerate(){
-    #检查是否已被输出
+    #检查是否已被输出，同一规则只输出一次
     if [ "${ruleGenerated[$1]}" != "1" ] ;then
         ruleGenerated[$1]=1
         case "$1" in
@@ -172,6 +170,26 @@ ruleGenerate(){
     fi
 }
 
+# 处理参数错误
+checkError(){
+    if [ "$error" == "true" ]; then
+        unset error
+        aprint error $key
+        aprint help
+        aprint askParameter
+        if read -t 60; then
+            if [ "$REPLY" == "exit" ]; then
+                exit 0
+            else
+                readParameter $REPLY
+            fi
+        else
+            aprint timeout
+            readParameter
+        fi
+    fi
+}
+
 # 读取，切割参数
 readParameter(){
     #初始化输出记录
@@ -184,7 +202,7 @@ readParameter(){
         case $key in
             0) ruleGenerate 1; ruleGenerate 2; ruleGenerate 4;;
             [1-9]) ;& [1-9][0-9])
-                factor=16 # 2^4
+                factor=8 # 2^3 规则数量
                 if [ "$key" -ge "$factor" ]; then
                     error="true"
                     break
@@ -206,7 +224,8 @@ readParameter(){
                 ruleGenerate win
             ;;
             txt)
-                colorful="false"
+                # 停用多彩输出以便于保存为文本
+                unset colorful
                 readParameter 0
             ;;
             *)
@@ -216,24 +235,8 @@ readParameter(){
         esac
         shift
     done
-}
-
-checkParameter(){
-    while [ "$error" == "true" ]; do
-        aprint error $key
-        error="false"
-        aprint askParameter
-        if read -t 60; then
-            if [ "$REPLY" == "exit" ]; then
-                exit 0
-            else
-                readParameter $REPLY
-            fi
-        else
-            aprint timeout
-            readParameter
-        fi
-    done
+    # 处理参数错误
+    checkError
 }
 
 ##############################
@@ -241,7 +244,6 @@ checkParameter(){
 
 # 读取传入的全部参数
 readParameter $@
-# 检查参数
-checkParameter
+
 # 再见
 aprint goodbye

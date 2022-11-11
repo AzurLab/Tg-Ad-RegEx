@@ -19,7 +19,7 @@ Telegram 去广告正则
 
 <details>
 
-<summary>规则模板(非及时更新)</summary>
+<summary>规则模板(仅供展示,非及时更新)</summary>
 
 ## 双关键词匹配规则
 
@@ -75,7 +75,7 @@ Telegram 去广告正则
 
 <details>
 
-<summary>生成的规则(非及时更新)</summary>
+<summary>生成的规则(仅供展示,非及时更新)</summary>
 
 
 ### 无名V2机器人规则

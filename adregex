@@ -1,7 +1,7 @@
 #!/bin/bash
 ##############################
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
-# 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex
+# 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex txt > output.txt
 # 当前适配 無名 CloneA 机器人 @WuMingv2CloneBot (我们永远怀念鲁小迅)
 
 ##############################

@@ -1,7 +1,7 @@
 #!/bin/bash
 ##############################
 # Telegram 去广告正则生成脚本 https://github.com/AzurLab/Tg-Ad-RegEx
-# 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex txt > output.txt
+# 一键命令 wget https://raw.githubusercontent.com/AzurLab/Tg-Ad-RegEx/main/adregex -O adregex && chmod +x adregex && ./adregex > output.txt
 # 当前适配 無名 CloneA 机器人 @WuMingv2CloneBot (我们永远怀念鲁小迅)
 
 ##############################
@@ -78,9 +78,6 @@ fileNamePatterns="\
 ##############################
 # 以下为参数及函数
 
-# 多彩输出参数
-colorful="true"
-
 # 输出函数
 aprint(){
     printColor="0"
@@ -120,7 +117,6 @@ aprint(){
         printText="Adregex 文本消息规则 For Windows 已自动拷贝至剪贴板"
     ;;
     win)
-        colorful="false"
         aprint text noLF
     ;;
     # 输出帮助
@@ -150,7 +146,7 @@ aprint(){
     ;;
     esac
     if [ "${printText}" != "" ]; then
-        if [ "$colorful" == "true" ]; then colorCode="\033[${printColor}m";colorReset="\033[0m"; fi
+        if [[ -t 1 ]]; then colorCode="\033[${printColor}m";colorReset="\033[0m"; fi
         echo -e "${colorCode}${printText}${colorReset}${printLF}"
         unset colorCode printText colorReset printLF
     fi
@@ -240,11 +236,6 @@ readParameter(){
             ;;
             win)
                 ruleGenerate win
-            ;;
-            txt)
-                # 停用多彩输出以便于保存为文本
-                unset colorful
-                readParameter 0
             ;;
             *)
                 error="true"
